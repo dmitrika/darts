@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import DartsScore from './app/app';
+import DartsScore from './app/root';
 
-AppRegistry.registerComponent('DartsScore', () => DartsScore);
+AppRegistry.registerComponent('dartsScoreboard', () => DartsScore);
