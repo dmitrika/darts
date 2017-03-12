@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 const App = ({
+    onGameRestart,
     currentScore,
     error,
 }) => (

@@ -5,7 +5,6 @@ import {
     SCORE_SUBMIT,
     SCORE_CLEAR,
     SCORE_UNDO,
-    GAME_NEXT_TURN,
     GAME_RESTART
 } from '../constants'
 
