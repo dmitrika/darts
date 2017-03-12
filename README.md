@@ -1,4 +1,5 @@
 # React Native Darts Score Board
+![](https://travis-ci.org/dmitrika/darts.svg?branch=master)
 
 ![alt text](https://media.giphy.com/media/l0IyiA7ti8iKI7yda/giphy.gif  "Darts Score Board")
 
