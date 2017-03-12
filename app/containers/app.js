@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
     StyleSheet,
@@ -9,37 +10,31 @@ import {
 
 import KeyBoard from '../components/keyboard';
 
+import {
+    onChangeScore
+} from '../actions'
+
 const mapStateToProps = state => ({
     p1: state.p1,
     p2: state.p2,
+    currentScore: state.currentScore
 })
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    onChangeScore
+}, dispatch)
 
 class App extends Component {
     onChangeScore = () => {
-        this.setState({score: this.state.score - 10})
-    }
-
-    reloadGame = () => {
-        this.setState({score: 501});
-    }
-
-    addNumber = number => {
-        this.setState({currentScore: this.state.currentScore + number})
-    }
-
-    onSubmit = () => {
-        let {currentPlayer, currentScore} = this.state
-
-        this.setState({
-            [currentPlayer]: this.state[currentPlayer] - currentScore
-        })
+        this.props.onChangeScore(15)
     }
 
     render() {
         let {
             p1,
             p2,
-            currentScore
+            currentScore,
+            onChangeScore
         } = this.props
 
         return (
@@ -52,6 +47,7 @@ class App extends Component {
                 </Text>
                 <KeyBoard />
                 <Button
+                    onPress={this.onChangeScore}
                     title="Restart"
                 />
             </View>
@@ -78,4 +74,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -3,16 +3,12 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import App from './containers/app'
-import Reducer from './reducers'
+import reducer from './reducer'
 
-let store = createStore(Reducer)
+let store = createStore(reducer)
 
-export default class DartsScore extends Component {
-    render() {
-        return (
-            <Provider store={store}>
-                <App />
-            </Provider>
-        )
-    }
-}
+export default () => (
+    <Provider store={store}>
+        <App />
+    </Provider>
+)
