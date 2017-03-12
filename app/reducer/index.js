@@ -1,3 +1,4 @@
+import { Alert } from 'react-native'
 import { handleActions } from 'redux-actions'
 
 import {
@@ -12,8 +13,8 @@ let initialState = {
     error: '',
     currentScore: '',
     currentTurn: 'p1',
-    p1: 501,
-    p2: 501
+    p1: 50,
+    p2: 50
 }
 
 const reducer = handleActions({
@@ -30,10 +31,26 @@ const reducer = handleActions({
         return {...state, error: 'The possible  highest score is 180'}
     },
 
-    [SCORE_SUBMIT]: state => ({
-        ...state,
-        [state.currentTurn]: state[state.currentTurn] - Number(state.currentScore)
-    }),
+    [SCORE_SUBMIT]: state => {
+        let nextScore = state[state.currentTurn] - Number(state.currentScore)
+
+        if (nextScore === 0 ) {
+            Alert.alert(
+                'Мы определили победителя!',
+                `Победитель ${state.currentTurn}`,
+                [{text: 'OK'}],
+                { cancelable: false }
+            )
+
+            return initialState
+        }
+
+        if (nextScore < 0) {
+            return state
+        }
+
+        return {...state, [state.currentTurn]: nextScore}
+    },
 
     [SCORE_CLEAR]: state => ({
         ...state,

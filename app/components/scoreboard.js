@@ -7,19 +7,20 @@ import {
 } from 'react-native'
 
 const mapDispatchToProps = state => ({
+    currentTurn: state.currentTurn,
     p1: state.p1,
     p2: state.p2
 })
 
-const ScoreBoard = ({p1, p2}) => (
+const ScoreBoard = ({p1, p2, currentTurn}) => (
     <View style={styles.wrapper}>
         <View>
             <Text style={styles.title}>P1</Text>
-            <Text style={styles.score}>{p1}</Text>
+            <Text style={[styles.score, {color: currentTurn !== 'p1' ? 'grey' : 'black'}]}>{p1}</Text>
         </View>
         <View>
             <Text style={styles.title}>P2</Text>
-            <Text style={styles.score}>{p2}</Text>
+            <Text style={[styles.score, {color: currentTurn !== 'p2' ? 'grey' : 'black'}]}>{p2}</Text>
         </View>
     </View>
 )
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
         fontSize: 35,
     },
     score: {
-        color: 'black',
         fontSize: 70
     }
 })

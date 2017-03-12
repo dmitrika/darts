@@ -42,7 +42,7 @@ class App extends Component {
         return (
             <View style={styles.container}>
                 <ScoreBoard />
-                <Text>Сurrent score {currentScore}</Text>
+                <Text>Сurrent turn {currentScore}</Text>
                 <Text>
                     {error} {error && (<Text onPress={onScoreClear}>Clear score</Text>)}
                 </Text>
