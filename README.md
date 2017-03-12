@@ -1,6 +1,6 @@
 # React Native Darts Score Board
 
-![](https://media.giphy.com/media/l0IyiA7ti8iKI7yda/giphy.gif)
+![alt text](https://media.giphy.com/media/l0IyiA7ti8iKI7yda/giphy.gif  "Darts Score Board")
 
 Android supports only
 
