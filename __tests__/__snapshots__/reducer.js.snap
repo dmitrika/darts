@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Actions snapshots onScore change over 180 1`] = `
+Object {
+  "currentPlayer": "p1",
+  "currentScore": "",
+  "error": "The possible  highest score is 180",
+  "history": Array [],
+  "p1": 501,
+  "p2": 501,
+}
+`;
+
+exports[`Actions snapshots onScoreChange under 180 1`] = `
+Object {
+  "currentPlayer": "p1",
+  "currentScore": "12",
+  "error": "",
+  "history": Array [],
+  "p1": 501,
+  "p2": 501,
+}
+`;
+
+exports[`Actions snapshots onScoreClear 1`] = `
+Object {
+  "currentPlayer": "p1",
+  "currentScore": "",
+  "error": "",
+  "history": Array [],
+  "p1": 501,
+  "p2": 501,
+}
+`;
+
+exports[`Actions snapshots onScoreSubmit bust draw 1`] = `
+Object {
+  "10": NaN,
+  "currentPlayer": "p1",
+  "currentScore": 20,
+  "error": "",
+  "history": Array [
+    20,
+  ],
+  "p1": 501,
+  "p2": 501,
+}
+`;
+
+exports[`Actions snapshots onScoreSubmit empty score submit 1`] = `
+Object {
+  "currentPlayer": "p1",
+  "currentScore": "",
+  "error": "",
+  "history": Array [],
+  "p1": 501,
+  "p2": 501,
+}
+`;
+
+exports[`Actions snapshots onScoreSubmit scored 1 1`] = `
+Object {
+  "501": NaN,
+  "currentPlayer": "p1",
+  "currentScore": 1,
+  "error": "",
+  "history": Array [
+    1,
+  ],
+  "p1": 501,
+  "p2": 501,
+}
+`;
+
+exports[`Actions snapshots onScoreSubmit winning draw 1`] = `
+Object {
+  "101": NaN,
+  "currentPlayer": "p1",
+  "currentScore": 101,
+  "error": "",
+  "history": Array [
+    101,
+  ],
+  "p1": 501,
+  "p2": 501,
+}
+`;
+
+exports[`Actions snapshots onScoreUndo 1`] = `
+Object {
+  "currentPlayer": "p1",
+  "currentScore": "",
+  "error": "",
+  "history": Array [],
+  "p1": 501,
+  "p2": 501,
+}
+`;

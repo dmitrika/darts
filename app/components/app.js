@@ -25,14 +25,16 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 const App = ({
     currentScore,
     error,
-    onGameRestart,
 }) => (
     <View style={styles.container}>
         <ScoreBoard />
         <Text>Сurrent turn {currentScore}</Text>
         <Text>{error}</Text>
         <KeyBoard />
-        <Button onPress={onGameRestart} title="Restart"/>
+        <Button
+            onPress={onGameRestart}
+            title="Restart"
+        />
     </View>
 )
 

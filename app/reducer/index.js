@@ -9,16 +9,16 @@ import {
     GAME_RESTART
 } from '../constants'
 
-let initialState = {
+export let initialState = {
     error: '',
     currentScore: '',
     currentPlayer: 'p1',
-    p1: 50,
-    p2: 50,
+    p1: 501,
+    p2: 501,
     history: []
 }
 
-const reducer = handleActions({
+export default handleActions({
     [SCORE_CHANGE]: (state, action) => {
         let prevScore = Number(state.currentScore)
 
@@ -73,17 +73,16 @@ const reducer = handleActions({
     }),
 
     [SCORE_UNDO]: state => {
-        let {history} = state
-
         if (state.currentScore) {
             return {...state, currentScore: '', error: ''}
         }
+
+        let {history} = state
 
         if (history.length === 0) {
             return state
         }
 
-        let prevPlayer = state.currentPlayer === 'p1' ? 'p2' : 'p1'
         let lastDraw = history[history.length - 1]
 
         if (lastDraw === 'Bust') {
@@ -91,6 +90,8 @@ const reducer = handleActions({
         } else {
             lastDraw = Number(lastDraw)
         }
+
+        let prevPlayer = state.currentPlayer === 'p1' ? 'p2' : 'p1'
 
         return {
             ...state,
@@ -102,5 +103,3 @@ const reducer = handleActions({
 
     [GAME_RESTART]: () => initialState
 }, initialState)
-
-export default reducer

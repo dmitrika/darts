@@ -15,7 +15,7 @@ const mapDispatchToProps = state => ({
     p2: state.p2
 })
 
-const ScoreBoard = ({p1, p2, currentPlayer, history}) => (
+export const ScoreBoard = ({p1, p2, currentPlayer, history}) => (
     <View style={styles.wrapper}>
         <View>
             <Text style={styles.title}>P1</Text>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     title: {
-        fontSize: 35,
+        fontSize: 25,
     },
     score: {
         fontSize: 70

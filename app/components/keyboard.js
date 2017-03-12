@@ -30,9 +30,7 @@ let mapDispatchToProps = dispatch => ({
     }, dispatch)
 })
 
-
-
-const KeyBoard = ({actions}) => {
+export const KeyBoard = ({actions}) => {
     let onButtonPress = title => {
         if (title === 'Undo') {
             return actions.onScoreUndo()

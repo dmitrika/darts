@@ -8,4 +8,4 @@ export default (history, position) =>
             }
         })
         .slice(-3)
-        .map((_, i) => `${!!i ? ', ' : ''}${_}`)
+        .map((score, i) => `${!!i ? ', ' : ''}${score}`)

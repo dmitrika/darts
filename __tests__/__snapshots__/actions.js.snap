@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Actions snapshots onGameRestart 1`] = `
+Object {
+  "type": "GAME_RESTART",
+}
+`;
+
+exports[`Actions snapshots onScoreChange 1`] = `
+Object {
+  "type": "SCORE_CHANGE",
+}
+`;
+
+exports[`Actions snapshots onScoreClear 1`] = `
+Object {
+  "type": "SCORE_CLEAR",
+}
+`;
+
+exports[`Actions snapshots onScoreSubmit 1`] = `
+Object {
+  "type": "SCORE_SUBMIT",
+}
+`;
+
+exports[`Actions snapshots onScoreUndo 1`] = `
+Object {
+  "type": "SCORE_UNDO",
+}
+`;
