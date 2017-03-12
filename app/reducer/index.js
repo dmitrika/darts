@@ -6,14 +6,13 @@ import {
     SCORE_CLEAR,
     SCORE_SUBMIT,
     SCORE_UNDO,
-    GAME_NEXT_TURN,
     GAME_RESTART
 } from '../constants'
 
 let initialState = {
     error: '',
     currentScore: '',
-    currentTurn: 'p1',
+    currentPlayer: 'p1',
     p1: 50,
     p2: 50,
     history: []
@@ -21,9 +20,9 @@ let initialState = {
 
 const reducer = handleActions({
     [SCORE_CHANGE]: (state, action) => {
-        let prevScore = state.currentScore
+        let prevScore = Number(state.currentScore)
 
-        if (Number(prevScore) + action.payload <= 180) {
+        if (prevScore + action.payload <= 180) {
             return {
                 ...state,
                 currentScore: state.currentScore + String(action.payload)
@@ -34,12 +33,16 @@ const reducer = handleActions({
     },
 
     [SCORE_SUBMIT]: state => {
-        let nextScore = state[state.currentTurn] - Number(state.currentScore)
+        let nextScore = state[state.currentPlayer] - Number(state.currentScore)
+
+        if (!state.currentScore) {
+            return state
+        }
 
         if (nextScore === 0 ) {
             Alert.alert(
                 'Мы определили победителя!',
-                `Победитель ${state.currentTurn}`,
+                `Победитель ${state.currentPlayer}`,
                 [{text: 'OK'}],
                 { cancelable: false }
             )
@@ -50,14 +53,16 @@ const reducer = handleActions({
         if (nextScore < 0) {
             return {
                 ...state,
-                history: [...state.history, 'Bust']
+                history: [...state.history, 'Bust'],
+                currentPlayer: state.currentPlayer === 'p1' ? 'p2' : 'p1'
             }
         }
 
         return {
             ...state,
-            [state.currentTurn]: nextScore,
-            history: [...state.history, state.currentScore]
+            [state.currentPlayer]: nextScore,
+            history: [...state.history, state.currentScore],
+            currentPlayer: state.currentPlayer === 'p1' ? 'p2' : 'p1'
         }
     },
 
@@ -70,11 +75,15 @@ const reducer = handleActions({
     [SCORE_UNDO]: state => {
         let {history} = state
 
+        if (state.currentScore) {
+            return {...state, currentScore: '', error: ''}
+        }
+
         if (history.length === 0) {
             return state
         }
 
-        let prevPlayer = state.currentTurn === 'p1' ? 'p2' : 'p1'
+        let prevPlayer = state.currentPlayer === 'p1' ? 'p2' : 'p1'
         let lastDraw = history[history.length - 1]
 
         if (lastDraw === 'Bust') {
@@ -87,14 +96,9 @@ const reducer = handleActions({
             ...state,
             history: history.slice(0, history.length - 1),
             [prevPlayer]: state[prevPlayer] + lastDraw,
-            currentTurn: prevPlayer
+            currentPlayer: prevPlayer
         }
     },
-
-    [GAME_NEXT_TURN]: state => ({
-        ...state,
-        currentTurn: state.currentTurn === 'p1' ? 'p2' : 'p1'
-    }),
 
     [GAME_RESTART]: () => initialState
 }, initialState)

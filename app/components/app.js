@@ -11,50 +11,30 @@ import {
 import ScoreBoard from './scoreboard'
 import KeyBoard from './keyboard'
 
-import {
-    onRestartGame,
-    onScoreClear
-} from '../actions'
+import { onGameRestart } from '../actions'
 
 const mapStateToProps = state => ({
     error: state.error,
-    p1: state.p1,
-    p2: state.p2,
     currentScore: state.currentScore
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    onRestartGame,
-    onScoreClear
+    onGameRestart
 }, dispatch)
 
-class App extends Component {
-    render() {
-        let {
-            p1,
-            p2,
-            currentScore,
-            onScoreClear,
-            onRestartGame,
-            error
-        } = this.props
-
-        return (
-            <View style={styles.container}>
-                <ScoreBoard />
-                <Text>Сurrent turn {currentScore}</Text>
-                <Text>
-                    {error} {error && (<Text onPress={onScoreClear}>Clear score</Text>)}
-                </Text>
-                <KeyBoard />
-                <Button
-                    onPress={onRestartGame}
-                    title="Restart"
-                />
-            </View>
-        )
-    }
-}
+const App = ({
+    currentScore,
+    error,
+    onGameRestart,
+}) => (
+    <View style={styles.container}>
+        <ScoreBoard />
+        <Text>Сurrent turn {currentScore}</Text>
+        <Text>{error}</Text>
+        <KeyBoard />
+        <Button onPress={onGameRestart} title="Restart"/>
+    </View>
+)
 
 const styles = StyleSheet.create({
     container: {

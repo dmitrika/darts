@@ -4,11 +4,10 @@ import { connect } from 'react-redux'
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 
 import {
-    onChangeScore,
+    onScoreChange,
     onScoreSubmit,
     onScoreClear,
-    onScoreUndo,
-    onNextTurn
+    onScoreUndo
 } from '../actions'
 
 let buttons = [
@@ -22,61 +21,50 @@ let buttons = [
     ],
 ]
 
-let mapDispatchToProps = dispatch => bindActionCreators({
-    onChangeScore,
-    onScoreSubmit,
-    onScoreClear,
-    onScoreUndo,
-    onNextTurn
-}, dispatch)
+let mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({
+        onScoreChange,
+        onScoreSubmit,
+        onScoreClear,
+        onScoreUndo
+    }, dispatch)
+})
 
 
-class KeyBoard extends Component {
-    onButtonPress = title => {
-        let {
-            onChangeScore,
-            onScoreSubmit,
-            onScoreClear,
-            onScoreUndo,
-            onNextTurn
-        } = this.props
 
+const KeyBoard = ({actions}) => {
+    let onButtonPress = title => {
         if (title === 'Undo') {
-            return onScoreUndo()
+            return actions.onScoreUndo()
         }
 
         if (title === 'Submit') {
-            onScoreSubmit()
-            onScoreClear()
-            onNextTurn()
-            return
-
+            actions.onScoreSubmit()
+            return actions.onScoreClear()
         }
 
-        onChangeScore(title)
+        actions.onScoreChange(title)
     }
 
-    render() {
-        return (
-            <View style={{alignItems: 'center', flexDirection: 'column'}}>
-                {buttons.map((row, i) => (
-                    <View key={i} style={{alignItems: 'center', flexDirection: 'row'}}>
-                        {row.map(button => (
-                            <TouchableOpacity
-                                key={button.title}
-                                style={styles.button}
-                                onPress={this.onButtonPress.bind(this, button.title)}
-                            >
-                                <Text style={[styles.buttonText, button.style]}>
-                                    {button.title}
-                                </Text>
-                            </TouchableOpacity>
-                        ))}
-                    </View>
-                ))}
-            </View>
-        )
-    }
+    return (
+        <View style={{alignItems: 'center', flexDirection: 'column'}}>
+            {buttons.map((row, i) => (
+                <View key={i} style={{alignItems: 'center', flexDirection: 'row'}}>
+                    {row.map(button => (
+                        <TouchableOpacity
+                            key={button.title}
+                            style={styles.button}
+                            onPress={onButtonPress.bind(this, button.title)}
+                        >
+                            <Text style={[styles.buttonText, button.style]}>
+                                {button.title}
+                            </Text>
+                        </TouchableOpacity>
+                    ))}
+                </View>
+            ))}
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({

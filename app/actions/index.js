@@ -9,14 +9,9 @@ import {
     GAME_RESTART
 } from '../constants'
 
-export const onChangeScore = createAction(
-    SCORE_CHANGE,
-    score => score
-)
-
+export const onScoreChange = createAction(SCORE_CHANGE, score => score)
 export const onScoreSubmit = createAction(SCORE_SUBMIT)
 export const onScoreClear = createAction(SCORE_CLEAR)
 export const onScoreUndo = createAction(SCORE_UNDO)
 
-export const onNextTurn = createAction(GAME_NEXT_TURN)
-export const onRestartGame = createAction(GAME_RESTART)
+export const onGameRestart = createAction(GAME_RESTART)
