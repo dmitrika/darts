@@ -1,15 +1,20 @@
 import { createAction } from 'redux-actions'
 
 import {
-    CHANGE_SCORE,
-    RESET_GAME
+    SCORE_CHANGE,
+    SCORE_SUBMIT,
+    SCORE_CLEAR,
+    GAME_NEXT_TURN,
+    GAME_RESTART
 } from '../constants'
 
 export const onChangeScore = createAction(
-    CHANGE_SCORE,
+    SCORE_CHANGE,
     score => score
 )
 
-export const resetGame = createAction(
-    RESET_GAME
-)
+export const onScoreSubmit = createAction(SCORE_SUBMIT)
+export const onScoreClear = createAction(SCORE_CLEAR)
+
+export const onNextTurn = createAction(GAME_NEXT_TURN)
+export const onRestartGame = createAction(GAME_RESTART)

@@ -11,30 +11,28 @@ import {
 import KeyBoard from '../components/keyboard';
 
 import {
-    onChangeScore
+    onRestartGame
 } from '../actions'
 
 const mapStateToProps = state => ({
+    error: state.error,
     p1: state.p1,
     p2: state.p2,
     currentScore: state.currentScore
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    onChangeScore
+    onRestartGame
 }, dispatch)
 
 class App extends Component {
-    onChangeScore = () => {
-        this.props.onChangeScore(15)
-    }
-
     render() {
         let {
             p1,
             p2,
             currentScore,
-            onChangeScore
+            onRestartGame,
+            error
         } = this.props
 
         return (
@@ -42,12 +40,11 @@ class App extends Component {
                 <Text style={styles.welcome}>
                     P1: {p1}, P2: {p2}
                 </Text>
-                <Text>
-                    {currentScore}
-                </Text>
+                <Text>Сurrent score {currentScore}</Text>
+                <Text>{error}</Text>
                 <KeyBoard />
                 <Button
-                    onPress={this.onChangeScore}
+                    onPress={onRestartGame}
                     title="Restart"
                 />
             </View>

@@ -1,2 +1,6 @@
-export const CHANGE_SCORE = 'CHANGE_SCORE'
-export const RESET_GAME = 'RESET_GAME'
+export const SCORE_CHANGE = 'SCORE_CHANGE'
+export const SCORE_SUBMIT = 'SCORE_SUBMIT'
+export const SCORE_CLEAR = 'SCORE_CLEAR'
+
+export const GAME_RESTART = 'GAME_RESTART'
+export const GAME_NEXT_TURN = 'GAME_NEXT_TURN'
