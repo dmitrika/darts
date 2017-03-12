@@ -11,10 +11,7 @@ const mapDispatchToProps = state => ({
     p2: state.p2
 })
 
-const ScoreBoard = ({
-    p1,
-    p2
-}) => (
+const ScoreBoard = ({p1, p2}) => (
     <View style={styles.wrapper}>
         <View>
             <Text style={styles.title}>P1</Text>
@@ -44,4 +41,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(mapDispatchToProps)(ScoreBoard);
+export default connect(mapDispatchToProps)(ScoreBoard)

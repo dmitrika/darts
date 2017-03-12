@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View, Button } from 'react-native'
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 
 import {
     onChangeScore,
@@ -10,13 +10,15 @@ import {
     onNextTurn
 } from '../actions'
 
-const FIOLET = '#841584'
-
 let buttons = [
     [{title: '1'}, {title: '2'}, {title: '3'}],
     [{title: '4'}, {title: '5'}, {title: '6'}],
     [{title: '7'}, {title: '8'}, {title: '9'}],
-    [{title: 'Undo'}, {title: '0'}, {title: 'Submit'}],
+    [
+        {title: 'Undo', style: {fontSize: 25}},
+        {title: '0'},
+        {title: 'Submit', style: {fontSize: 25}}
+    ],
 ]
 
 let mapDispatchToProps = dispatch => bindActionCreators({
@@ -57,11 +59,15 @@ class KeyBoard extends Component {
                 {buttons.map((row, i) => (
                     <View key={i} style={{alignItems: 'center', flexDirection: 'row'}}>
                         {row.map(button => (
-                            <Button
+                            <TouchableOpacity
                                 key={button.title}
+                                style={styles.button}
                                 onPress={this.onButtonPress.bind(this, button.title)}
-                                {...button}
-                            />
+                            >
+                                <Text style={[styles.buttonText, button.style]}>
+                                    {button.title}
+                                </Text>
+                            </TouchableOpacity>
                         ))}
                     </View>
                 ))}
@@ -69,5 +75,23 @@ class KeyBoard extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: 'white',
+        marginRight: 5,
+        marginBottom: 5,
+        height: 100,
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+    },
+    buttonText: {
+        fontSize: 55,
+        fontWeight: '500',
+        color: '#222'
+    }
+})
 
 export default connect(null, mapDispatchToProps)(KeyBoard)
