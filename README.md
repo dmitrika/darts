@@ -1,9 +1,6 @@
 # React Native Darts Score Board
 
-![](http://www.giphy.com/gifs/l0IyiA7ti8iKI7yda)
-
-* 501 initial score
-* undo all history or current turn score
+![](https://media.giphy.com/media/l0IyiA7ti8iKI7yda/giphy.gif)
 
 - [x] 501 initial score
 - [x] winning alert
