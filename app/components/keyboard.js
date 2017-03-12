@@ -7,6 +7,7 @@ import {
     onChangeScore,
     onScoreSubmit,
     onScoreClear,
+    onScoreUndo,
     onNextTurn
 } from '../actions'
 
@@ -25,6 +26,7 @@ let mapDispatchToProps = dispatch => bindActionCreators({
     onChangeScore,
     onScoreSubmit,
     onScoreClear,
+    onScoreUndo,
     onNextTurn
 }, dispatch)
 
@@ -35,11 +37,12 @@ class KeyBoard extends Component {
             onChangeScore,
             onScoreSubmit,
             onScoreClear,
+            onScoreUndo,
             onNextTurn
         } = this.props
 
         if (title === 'Undo') {
-            return // dispatch undo last action
+            return onScoreUndo()
         }
 
         if (title === 'Submit') {

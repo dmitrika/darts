@@ -5,6 +5,7 @@ import {
     SCORE_CHANGE,
     SCORE_CLEAR,
     SCORE_SUBMIT,
+    SCORE_UNDO,
     GAME_NEXT_TURN,
     GAME_RESTART
 } from '../constants'
@@ -14,7 +15,8 @@ let initialState = {
     currentScore: '',
     currentTurn: 'p1',
     p1: 50,
-    p2: 50
+    p2: 50,
+    history: []
 }
 
 const reducer = handleActions({
@@ -46,10 +48,17 @@ const reducer = handleActions({
         }
 
         if (nextScore < 0) {
-            return state
+            return {
+                ...state,
+                history: [...state.history, 'Bust']
+            }
         }
 
-        return {...state, [state.currentTurn]: nextScore}
+        return {
+            ...state,
+            [state.currentTurn]: nextScore,
+            history: [...state.history, state.currentScore]
+        }
     },
 
     [SCORE_CLEAR]: state => ({
@@ -57,6 +66,30 @@ const reducer = handleActions({
         error: '',
         currentScore: ''
     }),
+
+    [SCORE_UNDO]: state => {
+        let {history} = state
+
+        if (history.length === 0) {
+            return state
+        }
+
+        let prevPlayer = state.currentTurn === 'p1' ? 'p2' : 'p1'
+        let lastDraw = history[history.length - 1]
+
+        if (lastDraw === 'Bust') {
+            lastDraw = 0
+        } else {
+            lastDraw = Number(lastDraw)
+        }
+
+        return {
+            ...state,
+            history: history.slice(0, history.length - 1),
+            [prevPlayer]: state[prevPlayer] + lastDraw,
+            currentTurn: prevPlayer
+        }
+    },
 
     [GAME_NEXT_TURN]: state => ({
         ...state,
