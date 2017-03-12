@@ -8,10 +8,12 @@ import {
     Button
 } from 'react-native'
 
-import KeyBoard from '../components/keyboard';
+import ScoreBoard from './scoreboard'
+import KeyBoard from './keyboard'
 
 import {
-    onRestartGame
+    onRestartGame,
+    onScoreClear
 } from '../actions'
 
 const mapStateToProps = state => ({
@@ -22,7 +24,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    onRestartGame
+    onRestartGame,
+    onScoreClear
 }, dispatch)
 
 class App extends Component {
@@ -31,17 +34,18 @@ class App extends Component {
             p1,
             p2,
             currentScore,
+            onScoreClear,
             onRestartGame,
             error
         } = this.props
 
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    P1: {p1}, P2: {p2}
-                </Text>
+                <ScoreBoard />
                 <Text>Сurrent score {currentScore}</Text>
-                <Text>{error}</Text>
+                <Text>
+                    {error} {error && (<Text onPress={onScoreClear}>Clear score</Text>)}
+                </Text>
                 <KeyBoard />
                 <Button
                     onPress={onRestartGame}
@@ -58,17 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

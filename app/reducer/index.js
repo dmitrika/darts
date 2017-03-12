@@ -13,7 +13,7 @@ let initialState = {
     currentScore: '',
     currentTurn: 'p1',
     p1: 501,
-    p2: 502
+    p2: 501
 }
 
 const reducer = handleActions({
