@@ -3,7 +3,10 @@ import {
     onScoreSubmit,
     onScoreClear,
     onScoreUndo,
-    onGameRestart
+    onGameStart,
+    onGameStartNew,
+    onGameSetName,
+    onGameSetTotal
 } from '../app/actions'
 
 describe('Actions snapshots', () => {
@@ -23,7 +26,19 @@ describe('Actions snapshots', () => {
         expect(onScoreUndo()).toMatchSnapshot()
     })
 
-    test('onGameRestart', () => {
-        expect(onGameRestart()).toMatchSnapshot()
+    test('onGameStart', () => {
+        expect(onGameStart()).toMatchSnapshot()
+    })
+
+    test('onGameStartNew', () => {
+        expect(onGameStartNew()).toMatchSnapshot()
+    })
+
+    test('onGameSetName', () => {
+        expect(onGameStartNew()).toMatchSnapshot()
+    })
+
+    test('onGameSetTotal', () => {
+        expect(onGameStartNew()).toMatchSnapshot()
     })
 })

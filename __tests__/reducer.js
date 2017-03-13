@@ -2,7 +2,11 @@ import {
     onScoreChange,
     onScoreSubmit,
     onScoreClear,
-    onScoreUndo
+    onScoreUndo,
+    onGameStart,
+    onGameSetName,
+    onGameSetTotal,
+    onGameStartNew
 } from '../app/actions'
 
 import reducer, {initialState} from '../app/reducer'
@@ -26,7 +30,8 @@ describe('Actions snapshots', () => {
     test('onScoreSubmit winning draw', () => {
         let nextState = reducer({
             ...initialState,
-            currentPlayer: 101,
+            p1: {score: 101},
+            currentPlayer: 'p1',
             currentScore: 101
         }, onScoreSubmit())
 
@@ -36,7 +41,8 @@ describe('Actions snapshots', () => {
     test('onScoreSubmit bust draw', () => {
         let nextState = reducer({
             ...initialState,
-            currentPlayer: 10,
+            p1: {score: 11},
+            currentPlayer: 'p1',
             currentScore: 20
         }, onScoreSubmit())
 
@@ -46,7 +52,8 @@ describe('Actions snapshots', () => {
     test('onScoreSubmit scored 1', () => {
         let nextState = reducer({
             ...initialState,
-            currentPlayer: 501,
+            p1: {score: 11},
+            currentPlayer: 'p1',
             currentScore: 1
         }, onScoreSubmit())
 
@@ -69,6 +76,34 @@ describe('Actions snapshots', () => {
             error: 'Test error',
             currentScore: 101
         }, onScoreUndo())
+
+        expect(nextState).toMatchSnapshot()
+    })
+
+    test('onGameStart', () => {
+        let nextState = reducer(initialState, onGameStart())
+
+        expect(nextState).toMatchSnapshot()
+    })
+
+    test('onGameStartNew', () => {
+        let nextState = reducer({
+            ...initialState,
+            p1: {...initialState.p1, name: 'p1Name'},
+            p2: {...initialState.p2, name: 'p2Name'}
+        }, onGameStartNew())
+
+        expect(onGameStartNew).toMatchSnapshot()
+    })
+
+    test('onGameSetName', () => {
+        let nextState = reducer(initialState, onGameSetName('p1', 'test'))
+
+        expect(nextState).toMatchSnapshot()
+    })
+
+    test('onGameSetTotal', () => {
+        let nextState = reducer(initialState, onGameSetTotal('101'))
 
         expect(nextState).toMatchSnapshot()
     })

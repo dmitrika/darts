@@ -1,13 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Actions snapshots onGameSetName 1`] = `
+Object {
+  "currentPlayer": "p1",
+  "currentScore": "",
+  "error": "",
+  "history": Array [],
+  "p1": Object {
+    "name": "test",
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
+}
+`;
+
+exports[`Actions snapshots onGameSetTotal 1`] = `
+Object {
+  "currentPlayer": "p1",
+  "currentScore": "",
+  "error": "",
+  "history": Array [],
+  "p1": Object {
+    "name": "p1",
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": "101",
+  "view": "menu",
+}
+`;
+
+exports[`Actions snapshots onGameStart 1`] = `
+Object {
+  "currentPlayer": "p1",
+  "currentScore": "",
+  "error": "",
+  "history": Array [],
+  "p1": Object {
+    "name": "p1",
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "game",
+}
+`;
+
+exports[`Actions snapshots onGameStartNew 1`] = `[Function]`;
+
 exports[`Actions snapshots onScore change over 180 1`] = `
 Object {
   "currentPlayer": "p1",
   "currentScore": "",
   "error": "The possible  highest score is 180",
   "history": Array [],
-  "p1": 501,
-  "p2": 501,
+  "p1": Object {
+    "name": "p1",
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
 }
 `;
 
@@ -17,8 +84,16 @@ Object {
   "currentScore": "12",
   "error": "",
   "history": Array [],
-  "p1": 501,
-  "p2": 501,
+  "p1": Object {
+    "name": "p1",
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
 }
 `;
 
@@ -28,22 +103,36 @@ Object {
   "currentScore": "",
   "error": "",
   "history": Array [],
-  "p1": 501,
-  "p2": 501,
+  "p1": Object {
+    "name": "p1",
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
 }
 `;
 
 exports[`Actions snapshots onScoreSubmit bust draw 1`] = `
 Object {
-  "10": NaN,
-  "currentPlayer": "p1",
+  "currentPlayer": "p2",
   "currentScore": 20,
   "error": "",
   "history": Array [
-    20,
+    "Bust",
   ],
-  "p1": 501,
-  "p2": 501,
+  "p1": Object {
+    "score": 11,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
 }
 `;
 
@@ -53,36 +142,55 @@ Object {
   "currentScore": "",
   "error": "",
   "history": Array [],
-  "p1": 501,
-  "p2": 501,
+  "p1": Object {
+    "name": "p1",
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
 }
 `;
 
 exports[`Actions snapshots onScoreSubmit scored 1 1`] = `
 Object {
-  "501": NaN,
-  "currentPlayer": "p1",
+  "currentPlayer": "p2",
   "currentScore": 1,
   "error": "",
   "history": Array [
     1,
   ],
-  "p1": 501,
-  "p2": 501,
+  "p1": Object {
+    "score": 10,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
 }
 `;
 
 exports[`Actions snapshots onScoreSubmit winning draw 1`] = `
 Object {
-  "101": NaN,
   "currentPlayer": "p1",
-  "currentScore": 101,
+  "currentScore": "",
   "error": "",
-  "history": Array [
-    101,
-  ],
-  "p1": 501,
-  "p2": 501,
+  "history": Array [],
+  "p1": Object {
+    "name": undefined,
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
 }
 `;
 
@@ -92,7 +200,15 @@ Object {
   "currentScore": "",
   "error": "",
   "history": Array [],
-  "p1": 501,
-  "p2": 501,
+  "p1": Object {
+    "name": "p1",
+    "score": 301,
+  },
+  "p2": Object {
+    "name": "p2",
+    "score": 301,
+  },
+  "total": 301,
+  "view": "menu",
 }
 `;

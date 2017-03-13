@@ -6,15 +6,20 @@ import {
     SCORE_CLEAR,
     SCORE_SUBMIT,
     SCORE_UNDO,
-    GAME_RESTART
+    GAME_START,
+    GAME_START_NEW,
+    GAME_SET_NAME,
+    GAME_SET_TOTAL
 } from '../constants'
 
 export let initialState = {
+    view: 'menu',
     error: '',
+    total: 301,
     currentScore: '',
     currentPlayer: 'p1',
-    p1: 501,
-    p2: 501,
+    p1: {score: 301, name: 'p1'},
+    p2: {score: 301, name: 'p2'},
     history: []
 }
 
@@ -33,7 +38,8 @@ export default handleActions({
     },
 
     [SCORE_SUBMIT]: state => {
-        let nextScore = state[state.currentPlayer] - Number(state.currentScore)
+        let currentPlayer = state.currentPlayer
+        let nextScore = state[currentPlayer].score - Number(state.currentScore)
 
         if (!state.currentScore) {
             return state
@@ -42,27 +48,31 @@ export default handleActions({
         if (nextScore === 0 ) {
             Alert.alert(
                 'Мы определили победителя!',
-                `Победитель ${state.currentPlayer}`,
+                `Победитель ${currentPlayer}`,
                 [{text: 'OK'}],
                 { cancelable: false }
             )
 
-            return initialState
+            return ({
+                ...initialState,
+                p1: {...initialState.p1, name: state.p1.name},
+                p2: {...initialState.p2, name: state.p2.name}
+            })
         }
 
         if (nextScore < 0) {
             return {
                 ...state,
                 history: [...state.history, 'Bust'],
-                currentPlayer: state.currentPlayer === 'p1' ? 'p2' : 'p1'
+                currentPlayer: currentPlayer === 'p1' ? 'p2' : 'p1'
             }
         }
 
         return {
             ...state,
-            [state.currentPlayer]: nextScore,
+            [currentPlayer]: {...state[currentPlayer], score: nextScore},
             history: [...state.history, state.currentScore],
-            currentPlayer: state.currentPlayer === 'p1' ? 'p2' : 'p1'
+            currentPlayer: currentPlayer === 'p1' ? 'p2' : 'p1'
         }
     },
 
@@ -96,10 +106,31 @@ export default handleActions({
         return {
             ...state,
             history: history.slice(0, history.length - 1),
-            [prevPlayer]: state[prevPlayer] + lastDraw,
+            [prevPlayer]: {...state[prevPlayer], score: state[prevPlayer].score + lastDraw},
             currentPlayer: prevPlayer
         }
     },
 
-    [GAME_RESTART]: () => initialState
+    [GAME_START]: state => ({
+        ...state,
+        view: 'game',
+        p1: {...state.p1, score: state.total},
+        p2: {...state.p2, score: state.total}
+    }),
+
+    [GAME_START_NEW]: state => ({
+        ...initialState,
+        p1: {...initialState.p1, name: state.p1.name},
+        p2: {...initialState.p2, name: state.p2.name}
+    }),
+
+    [GAME_SET_NAME]: (state, {payload: {player, name}}) => ({
+        ...state,
+        [player]: {...state[player], name}
+    }),
+
+    [GAME_SET_TOTAL]: (state, {payload}) => ({
+        ...state,
+        total: payload
+    })
 }, initialState)

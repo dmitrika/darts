@@ -1,8 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Actions snapshots onGameRestart 1`] = `
+exports[`Actions snapshots onGameSetName 1`] = `
 Object {
-  "type": "GAME_RESTART",
+  "type": "GAME_START_NEW",
+}
+`;
+
+exports[`Actions snapshots onGameSetTotal 1`] = `
+Object {
+  "type": "GAME_START_NEW",
+}
+`;
+
+exports[`Actions snapshots onGameStart 1`] = `
+Object {
+  "type": "GAME_START",
+}
+`;
+
+exports[`Actions snapshots onGameStartNew 1`] = `
+Object {
+  "type": "GAME_START_NEW",
 }
 `;
 
