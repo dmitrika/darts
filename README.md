@@ -10,6 +10,8 @@ Android supports only
 - [x] handling >180 score and busts
 - [x] undo for all history
 - [x] jest snapshot for actions, reducer, components and helpers
-- [ ] custom player names
+- [x] custom player names
+
+- [ ] backend for saving and sharing result
 
 
