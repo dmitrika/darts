@@ -8,7 +8,8 @@ import {
     GAME_START,
     GAME_START_NEW,
     GAME_SET_NAME,
-    GAME_SET_TOTAL
+    GAME_SET_TOTAL,
+    GAME_RESET_WINNER
 } from '../constants'
 
 export const onScoreChange = createAction(SCORE_CHANGE, score => score)
@@ -20,3 +21,4 @@ export const onGameStart = createAction(GAME_START)
 export const onGameStartNew = createAction(GAME_START_NEW)
 export const onGameSetName = createAction(GAME_SET_NAME, (player, name) => ({player, name}))
 export const onGameSetTotal = createAction(GAME_SET_TOTAL, total => total)
+export const onGameResetWinner = createAction(GAME_RESET_WINNER)

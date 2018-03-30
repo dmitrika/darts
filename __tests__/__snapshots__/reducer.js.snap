@@ -178,12 +178,11 @@ Object {
 exports[`Actions snapshots onScoreSubmit winning draw 1`] = `
 Object {
   "currentPlayer": "p1",
-  "currentScore": "",
+  "currentScore": 101,
   "error": "",
   "history": Array [],
   "p1": Object {
-    "name": undefined,
-    "score": 301,
+    "score": 101,
   },
   "p2": Object {
     "name": "p2",
@@ -191,6 +190,7 @@ Object {
   },
   "total": 301,
   "view": "menu",
+  "winner": undefined,
 }
 `;
 

@@ -55,7 +55,7 @@ const Menu = ({
                 onChangeText={name => onGameSetName('p2', name)}
             />
         </View>
-        <View style={[styles.container, {flex: 0}]}>
+        <View style={[styles.container, {flex: 0 }]}>
             <Text style={styles.inputTitle}>Total Score:</Text>
             <Picker
                 enabled
@@ -88,15 +88,14 @@ const styles = StyleSheet.create({
     },
     inputTitle: {
         color: 'black',
-        fontSize: 30
+        fontSize: 30,
+        marginTop: 10
     },
     input: {
-        marginBottom: 10
+        height: 25
     },
     picker: {
         width: 90,
-        height: 30,
-        marginBottom: 20
     }
 })
 
